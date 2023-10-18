@@ -13,8 +13,10 @@ def encrpyt_code(nums,sourceCode):
         #print(int(ord(str))+int(nums))
         anum = int(ord(str))
         rnum = int(nums)
+        if(anum<65 or ( anum>90 and anum<97 ) or anum >122 ):
+            newStr.append(str)
+            continue
         # print("before anum:{} rnum:{}",anum,rnum)
-
         if(anum+rnum>122 and anum <=122):
             rnum = 122-anum
             anum=97
@@ -62,6 +64,9 @@ def decrpyt_code(nums,encrpytCode):
         anum = int(ord(str))
         rnum = int(nums)
         print("before anum:{} rnum:{}",anum,rnum)
+        if(anum<65 or ( anum>90 and anum<97 ) or anum >122 ):
+            newStr.append(str)
+            continue
         if(anum-rnum<97 and anum>=97):
             rnum = anum-97
             anum=122
