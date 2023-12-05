@@ -1,0 +1,44 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Encryption/Decryption</title>
+</head>
+<body>
+<form method="POST">
+<input type="radio" id="encrypt" name="operation" value="encrypt">
+<label for="encrypt">Encrypt</label><br>
+<input type="radio" id="decrypt" name="operation" value="decrypt">
+<label for="decrypt">Decrypt</label><br>
+<label for="text">Text:</label><br>
+<input type="text" id="text" name="text"><br><br>
+<label for="shift">shift:</label><br>
+<input type="text" id="shift" name="shift"><br><br>
+<input type="button" value="submit" onclick="show()">
+</form>
+<p>Result: <span id="result"></span></p>
+<script>
+function show(){
+    var radios = document.getElementsByName('operation');
+    var value;
+    var valueEn ;
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            value = radios[i].value;
+            break;
+        }
+    }
+    if (!value) {
+        alert("please select options")
+        return;
+    } 
+    var code = document.getElementById("text").value;
+    var shift = document.getElementById("shift").value;
+    fetch('http://127.0.0.1:5000/'+value+'/'+shift+'/'+code).then(response => response.json())
+    .then(data => document.getElementById("result").innerHTML = data.encrpytStr) 
+    .catch(error => console.log('Error:', error));
+    
+}
+</script>
+</body>
+</html>
